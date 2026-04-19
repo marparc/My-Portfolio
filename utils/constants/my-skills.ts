@@ -16,6 +16,8 @@ export const skills = [
   {
     category: "Backend",
     items: [
+      "C",
+      "C++",
       "Node.js",
       "Express.js",
       "NestJS",
@@ -31,6 +33,10 @@ export const skills = [
 
   {
     category: "Tools",
-    items: ["Git", "Docker", "Vercel", "Render", "Postman"],
+    items: ["Git", "Github", "Docker", "Vercel", "Render", "Postman"],
+  },
+  {
+    category: "AI",
+    items: ["Claude", "Cursor"],
   },
 ];

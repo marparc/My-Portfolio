@@ -7,6 +7,16 @@ import My_Photo from "../public/my-photo.png";
 
 //components
 import { Button } from "@/components/atoms/button";
+import { Carousel } from "@/components/atoms/carousel";
+import {
+  Card,
+  CardHeader,
+  CardNumber,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/atoms/card";
+import { Badge } from "@/components/atoms/badge";
 
 //constans
 import { skills } from "@/utils/constants/my-skills";
@@ -119,15 +129,15 @@ export default function Home() {
       {/* ════════════════════════════════════════
           HERO
       ════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden cursor-none">
+      <section className="relative min-h-screen flex items-center overflow-hidden cursor-none py-16 pb-28 lg:py-0">
         {/* Separator line top */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px from-transparent via-[#eb5939]/50 to-transparent" />
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-16 items-center">
           {/* Left – content */}
-          <div>
+          <div className="order-2 lg:order-1 text-center lg:text-left">
             {/* Title */}
-            <h1 className="text-[clamp(3rem,8vw,5.5rem)] font-bold leading-[1.1] tracking-tight mb-6">
+            <h1 className="text-[clamp(2.5rem,8vw,5.5rem)] font-bold leading-[1.1] tracking-tight mb-4 lg:mb-6">
               <span
                 className="block anim-fadein"
                 style={{ animationDelay: "0.1s" }}
@@ -144,7 +154,7 @@ export default function Home() {
 
             {/* Description */}
             <p
-              className="anim-fadein text-lg leading-relaxed text-[#b7ab98] max-w-xl mb-10"
+              className="anim-fadein text-base lg:text-lg leading-relaxed text-[#b7ab98] max-w-xl mb-6 lg:mb-10 mx-auto lg:mx-0"
               style={{ animationDelay: "0.7s" }}
             >
               Aspiring UI/UX Designer and Full-Stack Developer focused on
@@ -154,12 +164,12 @@ export default function Home() {
 
             {/* CTA buttons */}
             <div
-              className="anim-fadein flex flex-wrap gap-4 mb-16"
+              className="anim-fadein flex flex-col sm:flex-row flex-wrap gap-3 lg:gap-4 mb-8 lg:mb-16 justify-center lg:justify-start"
               style={{ animationDelay: "0.9s" }}
             >
               <Button
                 variant="primary"
-                className="inline-flex items-center gap-2 px-8 py-4 h-auto rounded-xl text-base font-semibold"
+                className="inline-flex items-center gap-2 px-6 lg:px-8 py-3 lg:py-4 h-auto rounded-xl text-sm lg:text-base font-semibold"
               >
                 Get in Touch
                 <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
@@ -174,7 +184,7 @@ export default function Home() {
               </Button>
               <Button
                 variant="outline-custom"
-                className="px-8 py-4 h-auto rounded-xl text-base font-semibold"
+                className="px-6 lg:px-8 py-3 lg:py-4 h-auto rounded-xl text-sm lg:text-base font-semibold"
               >
                 Download Resume
               </Button>
@@ -182,20 +192,20 @@ export default function Home() {
           </div>
 
           {/* Right – floating cards + orbs + profile */}
-          <div className="relative h-[600px] hidden lg:block">
+          <div className="relative h-[320px] sm:h-[380px] lg:h-[600px] order-1 lg:order-2">
             {/* Orbs */}
             <div
-              className="orb absolute top-0 right-0 w-[400px] h-[400px] rounded-full opacity-30"
+              className="orb absolute top-0 right-0 w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] rounded-full opacity-20 lg:opacity-30"
               style={{
                 background: "radial-gradient(circle, #eb5939, transparent)",
-                filter: "blur(100px)",
+                filter: "blur(80px)",
               }}
             />
             <div
-              className="orb absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full opacity-30"
+              className="orb absolute bottom-0 left-0 w-[200px] h-[200px] lg:w-[300px] lg:h-[300px] rounded-full opacity-20 lg:opacity-30"
               style={{
                 background: "radial-gradient(circle, #b7ab98, transparent)",
-                filter: "blur(100px)",
+                filter: "blur(80px)",
                 animationDelay: "4s",
               }}
             />
@@ -203,7 +213,7 @@ export default function Home() {
             {/* ── Name & Photo ── */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-3">
               <div
-                className="image-glow absolute top-1/2 left-1/2 w-56 h-56 rounded-full"
+                className="image-glow absolute top-1/2 left-1/2 w-48 h-48 lg:w-56 lg:h-56 rounded-full"
                 style={{
                   background:
                     "radial-gradient(circle, rgba(235,89,57,0.25), transparent)",
@@ -212,7 +222,7 @@ export default function Home() {
                 }}
               />
               {/* Static profile photo — not clickable/editable */}
-              <div className="relative w-150 h-150 rounded-full bg-[#0e0e0e] overflow-hidden">
+              <div className="relative w-[260px] h-[260px] sm:h-[300px] sm:w-[300px] lg:w-150 lg:h-150 rounded-full bg-[#0e0e0e] overflow-hidden">
                 <img
                   src={My_Photo.src}
                   alt="Marc Warren Partosa"
@@ -308,12 +318,9 @@ export default function Home() {
                     </h4>
                     <div className="flex flex-wrap gap-3">
                       {group.items.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-4 py-2 rounded-lg bg-[#414141]/80 border border-white/10 text-sm transition-all duration-300 hover:bg-[#b7ab98]/10 hover:border-[#b7ab98]/50 hover:-translate-y-0.5"
-                        >
+                        <Badge key={skill} variant="skill">
                           {skill}
-                        </span>
+                        </Badge>
                       ))}
                     </div>
                   </div>
@@ -360,18 +367,20 @@ export default function Home() {
           {/* Projects */}
           <div className="mb-24">
             <h3 className="text-2xl font-bold mb-10">Projects</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-1 xl:grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:gap-8">
               {projects.map((p) => (
-                <div
-                  key={p.num}
-                  className="value-card relative p-8 rounded-2xl bg-[#414141]/50 border border-white/10 transition-all duration-300 hover:bg-[#eb5939]/5 hover:border-[#eb5939]/30 hover:-translate-y-1 overflow-hidden"
-                >
-                  <div className="text-5xl font-bold gradient-text-sm leading-none mb-4">
-                    {p.num}
-                  </div>
-                  <h4 className="text-xl font-bold mb-3">{p.title}</h4>
-                  <p className="text-[#b7ab98] mb-4">{p.description}</p>
-                </div>
+                <Card key={p.num}>
+                  <CardHeader>
+                    <CardNumber>{p.num}</CardNumber>
+                    <CardTitle>{p.title}</CardTitle>
+                    <CardDescription>{p.description}</CardDescription>
+                  </CardHeader>
+                  {p.src && p.src.length > 0 && (
+                    <CardContent>
+                      <Carousel media={p.src} autoPlayInterval={12000} />
+                    </CardContent>
+                  )}
+                </Card>
               ))}
             </div>
           </div>
