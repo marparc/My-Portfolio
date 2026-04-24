@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation"; // Add this import
 
 //assets
 import My_Photo from "../public/my-photo.png";
@@ -30,6 +31,7 @@ import { useDownload } from "@/hooks/useDownload";
 export default function Home() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
+  const router = useRouter(); // Add this
 
   // Download resume hook
   const downloadResume = useDownload({
@@ -347,7 +349,11 @@ export default function Home() {
             <h3 className="text-2xl font-bold mb-10">Featured</h3>
             <div className="grid grid-cols-1 gap-6 md:gap-8">
               {projects.map((p) => (
-                <Card key={p.num}>
+                <Card
+                  key={p.num}
+                  onClick={() => router.push(`/project/${p.id}`)}
+                  className="cursor-pointer"
+                >
                   <CardHeader>
                     <CardNumber>{p.num}</CardNumber>
                     <CardTitle>{p.title}</CardTitle>

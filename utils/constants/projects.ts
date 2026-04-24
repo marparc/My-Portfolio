@@ -1,5 +1,6 @@
 export const projects = [
   {
+    id: "The-Silliman-University-Camera-Club-Portal",
     num: "01",
     title: "The Silliman University Camera Club Portal",
     description:
@@ -19,6 +20,7 @@ export const projects = [
     ],
   },
   {
+    id: "Awestruck-Productions",
     num: "02",
     title: "Awestruck Productions",
     description:
@@ -32,6 +34,7 @@ export const projects = [
     ],
   },
   {
+    id: "Galanter-And-Jones",
     num: "03",
     title: "Galanter and Jones",
     description:
@@ -41,11 +44,12 @@ export const projects = [
     src: [{ type: "image" as const, src: "/projects/galanter/0422.webp" }],
   },
   {
+    id: "Homework",
     num: "04",
     title: "Homework",
     description:
       "A Mobile Application for Student Job Opportunities project is designed to address the financial challenges faced by students by providing a platform that connects them with accessible and flexible job opportunities.",
-    modules: ["Job & Services", "Task Management"],
+    modules: ["Job & Services", "Task Management", "Messaging"],
     role: ["UI/UX Designer", "Frontend Developer"],
     src: [
       { type: "image" as const, src: "/projects/homework/0423.webp" },
