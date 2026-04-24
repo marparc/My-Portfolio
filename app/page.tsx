@@ -18,14 +18,23 @@ import {
 } from "@/components/atoms/card";
 import { Badge } from "@/components/atoms/badge";
 
-//constans
+//constants
 import { skills } from "@/utils/constants/my-skills";
 import { experience } from "@/utils/constants/my-experience";
 import { projects } from "@/utils/constants/projects";
+import { contacts } from "@/utils/constants/contacts";
+
+//hooks
+import { useDownload } from "@/hooks/useDownload";
 
 export default function Home() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
+
+  // Download resume hook
+  const downloadResume = useDownload({
+    filePath: "/files/MarcWarrenPartosaResume.pdf",
+  });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -57,7 +66,7 @@ export default function Home() {
       {/* ════════════════════════════════════════
           HERO
       ════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden cursor-none py-16 pb-28 lg:py-0">
+      <section className="relative min-h-screen flex items-center overflow-hidden cursor-none pb-28 lg:py-0">
         {/* Separator line top */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px from-transparent via-[#eb5939]/50 to-transparent" />
 
@@ -98,6 +107,12 @@ export default function Home() {
               <Button
                 variant="primary"
                 className="inline-flex items-center gap-2 px-6 lg:px-8 py-3 lg:py-4 h-auto rounded-xl text-sm lg:text-base font-semibold"
+                onClick={() =>
+                  window.open(
+                    `https://mail.google.com/mail/?view=cm&to=${contacts.email}`,
+                    "_blank"
+                  )
+                }
               >
                 Get in Touch
                 <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
@@ -113,6 +128,7 @@ export default function Home() {
               <Button
                 variant="outline-custom"
                 className="px-6 lg:px-8 py-3 lg:py-4 h-auto rounded-xl text-sm lg:text-base font-semibold"
+                onClick={downloadResume}
               >
                 Download Resume
               </Button>
@@ -150,7 +166,10 @@ export default function Home() {
                 }}
               />
               {/* Static profile photo — not clickable/editable */}
-              <div className="relative w-[260px] h-[260px] sm:h-[300px] sm:w-[300px] lg:w-150 lg:h-150 rounded-full bg-[#0e0e0e] overflow-hidden">
+              <div
+                className="anim-fadein relative w-[260px] h-[260px] sm:h-[300px] sm:w-[300px] lg:w-150 lg:h-150 rounded-full bg-[#0e0e0e] overflow-hidden"
+                style={{ animationDelay: "0.5s" }}
+              >
                 <img
                   src={My_Photo.src}
                   alt="Marc Warren Partosa"
@@ -196,13 +215,13 @@ export default function Home() {
                 I am a recent IT graduate from Silliman University with
                 experience in building both frontend and backend applications. I
                 enjoy creating practical and reliable systems that are easy to
-                use and maintain. I’ve worked across different areas of
+                use and maintain. I've worked across different areas of
                 development, which helped me understand how different parts of
                 an application come together.
               </p>
               <p className="text-lg leading-[1.8] text-[#b7ab98]">
                 I value writing clean, organized code and improving how users
-                interact with the systems I build. I’m always open to learning
+                interact with the systems I build. I'm always open to learning
                 new tools and approaches, especially those that help me build
                 better and more efficient applications.
               </p>
@@ -325,7 +344,7 @@ export default function Home() {
 
           {/* Projects */}
           <div className="mb-24">
-            <h3 className="text-2xl font-bold mb-10">Projects</h3>
+            <h3 className="text-2xl font-bold mb-10">Featured</h3>
             <div className="grid grid-cols-1 gap-6 md:gap-8">
               {projects.map((p) => (
                 <Card key={p.num}>
@@ -343,31 +362,6 @@ export default function Home() {
                   )}
                 </Card>
               ))}
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="relative text-center px-8 py-16 rounded-3xl bg-[#414141]/50 border border-[#eb5939]/30 overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(235,89,57,0.1),transparent)] pointer-events-none" />
-            <h3 className="relative text-3xl font-bold mb-2">
-              Let's Create Something Amazing
-            </h3>
-            <p className="relative text-[#b7ab98] text-lg mb-8">
-              I'm always interested in new opportunities and collaborations.
-            </p>
-            <div className="relative flex gap-4 justify-center flex-wrap">
-              <Button
-                variant="primary"
-                className="px-8 py-4 h-auto rounded-xl text-base font-semibold"
-              >
-                Download Resume
-              </Button>
-              <Button
-                variant="outline-custom"
-                className="px-8 py-4 h-auto rounded-xl text-base font-semibold"
-              >
-                Schedule a Call
-              </Button>
             </div>
           </div>
         </div>

@@ -146,6 +146,30 @@
   }
 }
 
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0e0e0e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #eb5939, #b7ab98);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #eb5939;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #eb5939 #0e0e0e;
+}
+
 /* ── Keyframes ── */
 @keyframes fadeInUp {
   from {
