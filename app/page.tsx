@@ -44,82 +44,10 @@ export default function Home() {
 
   return (
     <main className="bg-[#0e0e0e] text-[#b7ab98] font-sans antialiased">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
-
-        :root { color-scheme: dark; }
-
-        * { font-family: 'Google Sans', sans-serif; }
-
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-20px); }
-        }
-        @keyframes pulse-dot {
-          0%, 100% { opacity: 1; }
-          50%       { opacity: 0.4; }
-        }
-        @keyframes scrollLine {
-          0%   { transform: scaleY(0); transform-origin: top; }
-          50%  { transform: scaleY(1); transform-origin: top; }
-          51%  { transform: scaleY(1); transform-origin: bottom; }
-          100% { transform: scaleY(0); transform-origin: bottom; }
-        }
-        @keyframes orbFloat {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          50%       { transform: translate(30px, -30px) scale(1.1); }
-        }
-        @keyframes glowPulse {
-          0%, 100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
-          50%       { opacity: 0.8; transform: translate(-50%,-50%) scale(1.1); }
-        }
-
-        .anim-fadein { animation: fadeInUp 0.8s ease-out backwards; }
-        .float-card  { animation: float 6s ease-in-out infinite; }
-        .pulse-dot   { animation: pulse-dot 2s ease-in-out infinite; }
-        .scroll-line { animation: scrollLine 2s ease-in-out infinite; }
-        .orb         { animation: orbFloat 8s ease-in-out infinite; }
-        .image-glow  { animation: glowPulse 3s ease-in-out infinite; }
-
-        .gradient-text {
-          background: linear-gradient(135deg, #eb5939 0%, #b7ab98 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-        .gradient-text-sm {
-          background: linear-gradient(135deg, #eb5939, #b7ab98);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        .value-card::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 3px;
-          background: linear-gradient(90deg, #eb5939, #b7ab98);
-          transform: scaleX(0);
-          transform-origin: left;
-          transition: transform 0.3s ease;
-        }
-        .value-card:hover::before { transform: scaleX(1); }
-
-        @media (max-width: 1024px) {
-          .custom-cursor, .custom-cursor-dot { display: none !important; }
-        }
-      `}</style>
-
       {/* ── Custom cursor ── */}
       <div
         ref={cursorRef}
         className="custom-cursor fixed pointer-events-none z-[9999] w-10 h-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#eb5939]/50 mix-blend-difference"
-        style={{ transition: "width 0.3s, height 0.3s" }}
       />
       <div
         ref={cursorDotRef}
@@ -265,28 +193,59 @@ export default function Home() {
             {/* Intro */}
             <div className="flex flex-col gap-8">
               <p className="text-lg leading-[1.8] text-[#b7ab98]">
-                I'm a passionate creator who thrives at the intersection of
-                design and development. With over 5 years of experience, I've
-                helped startups and enterprises bring their digital visions to
-                life through thoughtful design and clean, efficient code.
+                I am a recent IT graduate from Silliman University with
+                experience in building both frontend and backend applications. I
+                enjoy creating practical and reliable systems that are easy to
+                use and maintain. I’ve worked across different areas of
+                development, which helped me understand how different parts of
+                an application come together.
               </p>
               <p className="text-lg leading-[1.8] text-[#b7ab98]">
-                My approach combines user-centered design principles with modern
-                development practices to create products that are not only
-                visually stunning but also performant, accessible, and scalable.
+                I value writing clean, organized code and improving how users
+                interact with the systems I build. I’m always open to learning
+                new tools and approaches, especially those that help me build
+                better and more efficient applications.
               </p>
 
               <div className="flex flex-col gap-4 mt-2">
                 {[
                   {
-                    icon: "🎨",
+                    icon: (
+                      <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#eb5939"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" />
+                      </svg>
+                    ),
                     title: "Design Philosophy",
-                    sub: "Form follows function, but beauty matters",
+                    sub: "Good design balances usability and visual clarity.",
                   },
                   {
-                    icon: "⚡",
+                    icon: (
+                      <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#eb5939"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polyline points="16 18 22 12 16 6" />
+                        <polyline points="8 6 2 12 8 18" />
+                      </svg>
+                    ),
                     title: "Development Approach",
-                    sub: "Clean, maintainable, performance-first",
+                    sub: "Built clean. Runs fast. Scales easy.",
                   },
                 ].map((h) => (
                   <div
@@ -373,7 +332,9 @@ export default function Home() {
                   <CardHeader>
                     <CardNumber>{p.num}</CardNumber>
                     <CardTitle>{p.title}</CardTitle>
-                    <CardDescription>{p.description}</CardDescription>
+                    <CardDescription className="hidden md:block">
+                      {p.description}
+                    </CardDescription>
                   </CardHeader>
                   {p.src && p.src.length > 0 && (
                     <CardContent>

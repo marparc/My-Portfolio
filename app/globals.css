@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -118,6 +119,7 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    font-family: "Google Sans", sans-serif;
   }
   body {
     @apply bg-background text-foreground;
@@ -125,4 +127,140 @@
   html {
     @apply font-sans;
   }
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* ── Custom Cursor ── */
+@layer utilities {
+  .custom-cursor {
+    transition: width 0.3s, height 0.3s;
+  }
+
+  @media (max-width: 1024px) {
+    .custom-cursor,
+    .custom-cursor-dot {
+      display: none !important;
+    }
+  }
+}
+
+/* ── Keyframes ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+@keyframes scrollLine {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+}
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* ── Animation utility classes ── */
+.anim-fadein {
+  animation: fadeInUp 0.8s ease-out backwards;
+}
+.float-card {
+  animation: float 6s ease-in-out infinite;
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.scroll-line {
+  animation: scrollLine 2s ease-in-out infinite;
+}
+.orb {
+  animation: orbFloat 8s ease-in-out infinite;
+}
+.image-glow {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #eb5939 0%, #b7ab98 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-sm {
+  background: linear-gradient(135deg, #eb5939, #b7ab98);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Value card top-border reveal ── */
+.value-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #eb5939, #b7ab98);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.value-card:hover::before {
+  transform: scaleX(1);
 }

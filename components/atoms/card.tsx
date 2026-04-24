@@ -12,7 +12,7 @@ function Card({
       data-slot="card"
       data-size={size}
       className={cn(
-        "value-card relative flex flex-col gap-4 overflow-hidden rounded-2xl bg-[#414141]/50 p-4 text-sm transition-all duration-300 hover:border-[#eb5939]/30 hover:-translate-y-1 md:p-8",
+        "value-card relative flex flex-col gap-0 md:gap-4 overflow-hidden rounded-2xl bg-[#414141]/50 p-4 text-sm transition-all duration-300 hover:border-[#eb5939]/30 hover:-translate-y-1 md:p-8",
         "before:absolute before:top-0 before:left-0 before:right-0 before:h-[3px] before:bg-gradient-to-r before:from-[#eb5939] before:to-[#b7ab98] before:scale-x-0 before:origin-left before:transition-transform before:duration-300 hover:before:scale-x-100",
         className
       )}
@@ -59,7 +59,7 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-description"
       className={cn(
-        "text-sm md:text-base text-[#b7ab98] leading-relaxed mb-1 md:mb-2",
+        "text-sm md:text-base text-[#b7ab98] leading-relaxed mb-0 md:mb-2",
         className
       )}
       {...props}
