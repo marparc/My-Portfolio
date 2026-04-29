@@ -1,15 +1,15 @@
 "use client";
 
 import { use, useEffect, useRef } from "react";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 
 //components
 import { Button } from "@/components/atoms/button";
 import { Carousel } from "@/components/atoms/carousel";
 import { Badge } from "@/components/atoms/badge";
 
-//constants
-import { projects } from "@/utils/constants/projects";
+//hooks
+import { useProjects } from "@/hooks/useProject";
 
 export default function ProjectPage({
   params,
@@ -18,12 +18,15 @@ export default function ProjectPage({
 }) {
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   // Unwrap the params Promise
   const { id } = use(params);
 
-  // Find the project by id
-  const project = projects.find((p) => p.id === id);
+  // Get project data using the hook
+  const { getProjectById, getAllProjectsExcept } = useProjects();
+  const project = getProjectById(id);
+  const otherProjects = getAllProjectsExcept(id);
 
   // If project not found, show 404
   if (!project) {
@@ -133,6 +136,70 @@ export default function ProjectPage({
           </div>
         </div>
       </section>
+
+      {/* ════════════════════════════════════════
+          OTHER PROJECTS
+      ════════════════════════════════════════ */}
+      {otherProjects.length > 0 && (
+        <section className="relative py-16 px-8 overflow-hidden">
+          {/* Separator */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-[#eb5939]/50 to-transparent" />
+
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-2xl font-bold mb-10">Other Projects</h2>
+
+            {/* Projects Grid - YouTube-inspired layout */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {otherProjects.map((p, index) => (
+                <div
+                  key={p.num}
+                  className="anim-fadein group cursor-pointer"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                  onClick={() => router.push(`/project/${p.id}`)}
+                >
+                  {/* Thumbnail */}
+                  <div className="relative aspect-video rounded-xl overflow-hidden mb-3 bg-[#1a1a1a]">
+                    {p.src && p.src.length > 0 && (
+                      <>
+                        {p.src[0].type === "video" ? (
+                          <video
+                            src={p.src[0].src}
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            muted
+                            loop
+                            playsInline
+                          />
+                        ) : (
+                          <img
+                            src={p.src[0].src}
+                            alt={p.title}
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                        )}
+                        {/* Overlay on hover */}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+                      </>
+                    )}
+                  </div>
+
+                  {/* Project Info */}
+                  <div className="flex gap-3">
+                    {/* Title and Description */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-[#b7ab98] mb-1 line-clamp-2 group-hover:text-white transition-colors duration-200">
+                        {p.title}
+                      </h3>
+                      <p className="text-sm text-[#b7ab98]/60 line-clamp-2">
+                        {p.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </main>
   );
 }

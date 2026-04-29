@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useRouter } from "next/navigation"; // Add this import
+import { useRouter } from "next/navigation";
 
 //assets
 import My_Photo from "../public/my-photo.png";
@@ -22,16 +22,18 @@ import { Badge } from "@/components/atoms/badge";
 //constants
 import { skills } from "@/utils/constants/my-skills";
 import { experience } from "@/utils/constants/my-experience";
-import { projects } from "@/utils/constants/projects";
 import { contacts } from "@/utils/constants/contacts";
 
 //hooks
 import { useDownload } from "@/hooks/useDownload";
+import { useProjects } from "@/hooks/useProject";
 
 export default function Home() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
-  const router = useRouter(); // Add this
+  const router = useRouter();
+  const { getAllProjects } = useProjects();
+  const projects = getAllProjects();
 
   // Download resume hook
   const downloadResume = useDownload({
@@ -345,7 +347,7 @@ export default function Home() {
           </div>
 
           {/* Projects */}
-          <div className="mb-24">
+          <div>
             <h3 className="text-2xl font-bold mb-10">Featured</h3>
             <div className="grid grid-cols-1 gap-6 md:gap-8">
               {projects.map((p) => (
